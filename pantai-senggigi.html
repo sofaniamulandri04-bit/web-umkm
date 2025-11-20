@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jamu Tradisional - Jamu hradisional yang menyehatkan.</title>
+    <meta name="description" content="Informasi lengkap tentang Jamu Herbal, UMKM Lokal Desa Toya.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">UMKM Lokal Desa Toya</div>
+            <ul>
+                <li><a href="../index.html">Beranda</a></li>
+                <li><a href="../index.html#travel">UMKM</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="detail-hero">
+    <div class="detail-image" style="background: url('../assets/image/contoh-gambar.jpg'); background-size: cover; background-position: center;">
+            <!-- Pantai Senggigi image replaced with contoh-gambar.jpg -->
+        </div>
+    </section>
+
+    <section class="detail-content">
+        <div class="container">
+            <h1>Jamu Herbal</h1>
+            <p class="description">Jamu Herbal Desa Toya diracik secara khusus menyesuaikan kebutuhan dan kondisi kesehatan setiap orang. Menggunakan bahan alami seperti jahe, kunyit, temulawak, dan serai, jamu ini dibuat tanpa bahan kimia atau pengawet. Setiap racikan memiliki khasiat berbeda — mulai dari meredakan pegal, meningkatkan daya tahan tubuh, hingga menjaga kebugaran. Diproses secara tradisional namun higienis, Jamu Herbal Toya menjadi pilihan alami untuk menjaga kesehatan sesuai kebutuhan masing-masing.</p>
+
+            <div class="detail-info">
+                <div class="info-item">
+                    <h3>Kontak Pemesanan</h3>
+                    <p>Pemesanan via WhatsApp 087743311324, saat bahan tersedia. Disarankan memesan pada jam kerja untuk konsultasi kebutuhan kesehatan.</p>
+                </div>
+                <div class="info-item">
+                    <h3>Harga</h3>
+                    <p>Gratis (beberapa area mungkin memiliki biaya parkir)</p>
+                </div>
+                <div class="info-item">
+                    <h3>Alamat Lengkap</h3>
+                    <p>Dusun Kekuang, Desa Toya, Kecamatan Aikmel, Kabupaten Lombok Timur, Nusa Tenggara Baratt</p>
+                </div>
+            </div>
+
+            <div class="map-section">
+                <h3>Lokasi</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.123456789012!2d116.123456789!3d-8.123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwMDcnMjQuNCJTIDExNsKwMDcnMjQuNCJF!5e0!3m2!1sen!2sid!4v1234567890123!5m2!1sen!2sid" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Wisata Lokal Lombok. Hasil Kolaborasi KKN Hehe dengan Pemerintah Desa Hehe.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/script.js"></script>
+    <script>
+        // Detail page specific animations
+        window.addEventListener('load', () => {
+            const detailContent = document.querySelector('.detail-content');
+            if (detailContent) {
+                detailContent.style.opacity = '0';
+                detailContent.style.transform = 'translateY(50px)';
+                setTimeout(() => {
+                    detailContent.style.transition = 'opacity 1s ease, transform 1s ease';
+                    detailContent.style.opacity = '1';
+                    detailContent.style.transform = 'translateY(0)';
+                }, 500);
+            }
+
+            // Animate info items with stagger
+            document.querySelectorAll('.info-item').forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 700 + index * 200);
+            });
+        });
+    </script>
