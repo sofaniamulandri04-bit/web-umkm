@@ -1,0 +1,683 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #000000;
+    overflow-x: hidden;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #8B4513;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #8B4513;
+}
+
+/* Hero Section with Carousel */
+.hero {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+}
+
+/* Ensure hero does not overlay following sections when scrolled */
+.hero::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px; /* ensure a small gap to avoid seam issues */
+    height: 1px;
+    pointer-events: none;
+}
+
+.carousel {
+    height: 100%;
+    position: relative;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: translateX(100px) scale(0.95);
+    transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensure slide backgrounds behave predictably for parallax */
+.carousel-slide {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    will-change: background-position, opacity, transform;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    z-index: 1;
+}
+
+.carousel-slide.prev {
+    transform: translateX(-100px) scale(0.95);
+}
+
+.carousel-slide.next {
+    transform: translateX(100px) scale(0.95);
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    overflow: visible;
+    border-right: none;
+    white-space: normal;
+    animation: none;
+    line-height: 1.05;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-button {
+    display: inline-block;
+    background: #8B4513;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(50, 25, 8, 0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button:hover {
+    background: #723A0F;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(50, 25, 8, 0.45);
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.carousel-controls {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+}
+
+/* keep controls above hero but below header */
+.carousel-controls {
+    z-index: 20;
+}
+
+.carousel-btn {
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* About Section */
+#about {
+    padding: 5rem 0;
+    background: #ffffff;
+    text-align: justify;
+    line-height: 1.8;
+    color: #555;
+}
+
+#about h2 {
+    text-align: center;
+    color: #8B4513;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-family: 'Playfair Display', serif;
+}
+
+#about p {
+    max-width: 1000px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Collaboration */
+.collaboration {
+    padding: 5rem 0;
+    background: #f8f9fa;
+    text-align: center;
+}
+
+/* Ensure collaboration sits above any hero artifacts when scrolled */
+.collaboration {
+    position: relative;
+    z-index: 10;
+}
+
+.collaboration h2 {
+    margin-bottom: 2rem;
+    color: #8B4513;
+}
+
+.collaboration p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    text-align: justify;
+}
+
+/* Travel */
+.travel {
+    padding: 5rem 0;
+    background: white;
+}
+
+.travel h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #8B4513;
+}
+
+.travel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.travel-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Make card a column flex container so CTA sticks to the bottom */
+.travel-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.travel-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 69, 19, 0.18), transparent);
+    transition: left 0.5s;
+}
+
+.travel-card:hover::before {
+    left: 100%;
+}
+
+.travel-card:hover {
+    transform: translateY(-15px) rotateX(5deg);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+    
+}
+
+.travel-card {
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+}
+
+.travel-card::after {
+    content: '';
+    position: absolute;
+    top: var(--mouse-y);
+    left: var(--mouse-x);
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(139, 69, 19, 0.28) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+    pointer-events: none;
+}
+
+.travel-card:hover::after {
+    width: 200px;
+    height: 200px;
+}
+
+.travel-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Ensure content area grows and CTA stays at the bottom */
+.travel-card > h3,
+.travel-card > p {
+    flex: 0 0 auto;
+}
+
+.card-link {
+    margin-top: auto; /* push to bottom */
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.travel-card h3 {
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    color: #8B4513;
+    
+}
+
+.travel-card p {
+    padding: 0 1.5rem 1.5rem;
+    color: #7f8c8d;
+    text-align: justify;
+    
+}
+
+.card-link {
+    display: block;
+    padding: 1rem 1.5rem;
+    background: #8B4513;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.card-link:hover {
+    background: #723A0F;
+}
+
+/* Featured */
+.featured {
+    padding: 5rem 0;
+    background: #f8f9fa;
+}
+
+.featured h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #8B4513;
+}
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.featured-item {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.featured-item h3 {
+    margin-bottom: 1rem;
+    color: #8B4513;
+}
+
+.featured-item p {
+    color: #7f8c8d;
+}
+
+/* FAQ */
+.faq {
+    padding: 5rem 0;
+    background: white;
+}
+
+.faq h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #8B4513;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 1.5rem;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    -webkit-transition: background 0.3s ease;
+    -moz-transition: background 0.3s ease;
+    -ms-transition: background 0.3s ease;
+    -o-transition: background 0.3s ease;
+}
+
+.faq-question:hover {
+    background: #f8f9fa;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: #f8f9fa;
+}
+
+.faq-answer p {
+    padding: 1.5rem;
+    margin: 0;
+    color: #7f8c8d;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Detail Page Styles */
+.detail-hero {
+    height: 50vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.detail-image {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.detail-content {
+    padding: 5rem 0;
+    background: white;
+    text-align: justify;
+
+}
+
+.detail-content h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #8B4513;
+    font-size: 2.5rem;
+}
+
+.description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    color: #555;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.detail-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.info-item {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.info-item h3 {
+    margin-bottom: 1rem;
+    color: #8B4513;
+}
+
+.info-item p {
+    color: #7f8c8d;
+    font-weight: 500;
+    text-align: justify;
+
+    
+}
+
+.map-section {
+    margin-top: 3rem;
+}
+
+.map-section h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #8B4513;
+}
+
+.map-section iframe {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Particle Effects */
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: float 20s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Footer */
+footer {
+    background: #8B4513;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    nav {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    nav ul {
+        margin-top: 1rem;
+    }
+    
+    nav ul li {
+        margin-left: 1rem;
+    }
+    
+    .travel-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .travel-card:hover {
+        transform: translateY(-10px) rotateX(0deg);
+    }
+
+    .particle {
+        display: none; /* Reduce animations on mobile for performance */
+    }
+}
+
+/* Performance Optimizations */
+.travel-card, .featured-item, .faq-item, .info-item {
+    will-change: transform, opacity;
+}
